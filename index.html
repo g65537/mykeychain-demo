@@ -26,12 +26,12 @@
             let win = openPopupWindow('https://mykeychain.net/', "newWindow", 800, 600);
             win.postMessage("hello there!", "*");
 
-            window.addEventListener("message", function(e){
-                console.log(e);
+            win.addEventListener('load', function () {
+                window.addEventListener("message", function (e) {
+                    console.log(e);
+                }, false);
             }, false);
         };
-
-
 
 
     </script>
