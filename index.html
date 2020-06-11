@@ -1,40 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <body>
-    <button id="btnopen">open</button>
     <script>
-
-        var myPopupWindow = '';
-        function openPopupWindow(url, name, width, height) {
-            // if it is already open
-            if (!myPopupWindow.closed && myPopupWindow.location) {
-                myPopupWindow.location.href = url;
-            } else {
-                myPopupWindow = window.open(url, name, "location=no, scrollbars=yes, resizable=yes, toolbar=no, menubar=no, width=" + width + ", height=" + height);
-                if (!myPopupWindow.opener) myPopupWindow.opener = self;
-            }
-            // if my main window has focus - set it to the popup
-            if (window.focus) { myPopupWindow.focus() }
-
-            return myPopupWindow;
-        }
-
-
-
-        document.getElementById("btnopen").onclick = function () {
-            let win = openPopupWindow('https://mykeychain.net/', "newWindow", 800, 600);
-            win.postMessage("hello there!", "*");
-
-            win.addEventListener('load', function () {
-                window.addEventListener("message", function (e) {
-                    console.log(e);
-                }, false);
-            }, false);
-        };
-
-
+        window.addEventListener("message", function(event){
+            console.log("recv:", event);
+        }, false);
     </script>
 </body>
-
 </html>
